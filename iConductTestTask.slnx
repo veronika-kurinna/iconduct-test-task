@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="frontend/frontend.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="iConductTestTask.AppHost/iConductTestTask.AppHost.csproj" />
+  <Project Path="iConductTestTask.Server/iConductTestTask.Server.csproj" />
+</Solution>
