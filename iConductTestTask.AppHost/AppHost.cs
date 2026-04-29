@@ -1,13 +1,14 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
+var postgres = builder.AddPostgres("postgres")
+                      .WithPgAdmin()
+                      .WithDataVolume()
+                      .AddDatabase("iConductTestTaskDb");
+
 var server = builder.AddProject<Projects.iConductTestTask_Server>("server")
+    .WithReference(postgres)
+    .WaitFor(postgres)
     .WithHttpHealthCheck("/health")
     .WithExternalHttpEndpoints();
-
-var webfrontend = builder.AddViteApp("webfrontend", "../frontend")
-    .WithReference(server)
-    .WaitFor(server);
-
-server.PublishWithContainerFiles(webfrontend, "wwwroot");
 
 builder.Build().Run();
