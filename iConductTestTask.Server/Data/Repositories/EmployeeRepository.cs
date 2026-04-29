@@ -69,7 +69,7 @@ public class EmployeeRepository : IEmployeeRepository
 
         if (rowsAffected == 0)
         {
-            throw new Exception($"No rows were affected for Employee Id {employeeId}.");
+            throw new Exception($"Employee with Id {employeeId} was not found.");
         }
     }
 }

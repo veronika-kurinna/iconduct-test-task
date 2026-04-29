@@ -39,6 +39,15 @@ public class DbInitializer
 
     private async Task SeedData(NpgsqlConnection connection)
     {
+        var checkCmd = connection.CreateCommand();
+        checkCmd.CommandText = "SELECT 1 FROM Employee LIMIT 1;";
+
+        var result = await checkCmd.ExecuteScalarAsync();
+        if (result != null)
+        {
+            return;
+        }
+
         var employees = new EmployeeEntity[]
         {
             new EmployeeEntity { Id = 1, Name = "Will", ManagerId = null, Enable = true },

@@ -1,6 +1,6 @@
 ﻿namespace iConductTestTask.Server.Dtos;
 
-public class Dto
+public class EmployeeResponse
 {
     public EmployeeDto Employee { get; set; }
 }

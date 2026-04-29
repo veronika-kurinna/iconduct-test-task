@@ -16,12 +16,12 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Dto>> GetEmployeeWithSubordinates(int id)
+    public async Task<ActionResult<EmployeeResponse>> GetEmployeeWithSubordinates(int id)
     {
         try
         {
             var result = await _service.GetEmployeeWithSubordinates(id);
-            Dto response = new Dto()
+            EmployeeResponse response = new EmployeeResponse()
             {
                 Employee = result
             };
@@ -34,7 +34,7 @@ public class EmployeeController : ControllerBase
 
     }
 
-    [HttpPut("{id}/enable")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateEnable(int id, [FromBody] bool enable)
     {
         try
